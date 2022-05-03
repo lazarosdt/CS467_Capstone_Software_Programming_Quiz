@@ -1,26 +1,20 @@
 const express = require("express");
 const route = express.Router();
+
 const services = require("../services/render");
 
-const {
-  checkAuthenticated,
-  checkNotAuthenticated,
-} = require("../middlewares/auth");
-
 // Routes
-// Donnyves
-route.get("/",checkAuthenticated, services.homeRoutes);
-
-route.get("/login",checkNotAuthenticated, services.login);
-route.post("/login",checkNotAuthenticated, services.post_login);
-
-route.get("/register",checkNotAuthenticated, services.register);
-route.post("/register",checkNotAuthenticated, services.post_register);
-
-route.delete("/logout"), checkNotAuthenticated, services.post_delete;
-// ============================================================================================
-
+route.get("/", services.homeRoutes);
+route.get("/login", services.login);
+route.get("/register", services.register);
 route.get("/welcome", services.welcome);
+<<<<<<< Updated upstream
+route.get("/create_quiz", services.create_quiz);
+route.get("/quiz_results", services.quiz_results);
+route.get("/canidate_quiz", services.canidate_quiz);
+route.get("/canidate_survey", services.canidate_survey);
+route.get("/canidate_complete", services.canidate_complete);
+=======
 // Aaron
 route.get("/quizzes", checkAuthenticated, services.quizzes);
 route.get("/create_quiz", checkAuthenticated, services.create_quiz); 
@@ -35,10 +29,11 @@ route.get(
 
 //-----------------------------
 //Dominique
-route.get("/canidate_quiz", services.canidate_quiz);
-route.get("/canidate_survey", services.canidate_survey);
-route.get("/canidate_complete", services.canidate_complete);
+route.get("/candidate_quiz", checkAuthenticated, services.candidate_quiz);
+route.get("/candidate_survey", checkAuthenticated, services.candidate_survey);
+route.get("/candidate_complete", checkAuthenticated, services.candidate_complete);
 //-----------------------------
+>>>>>>> Stashed changes
 
 
 module.exports = route;
